@@ -4,18 +4,13 @@ from typing import Optional, Awaitable, Union
 from tornado import websocket, web, ioloop
 from tank.motor import MotorController
 
+motor = MotorController()
 
 class Controller:
-
-    motor = MotorController()
 
     class MoveHandler(websocket.WebSocketHandler):
         def data_received(self, chunk: bytes) -> Optional[Awaitable[None]]:
             pass
-
-        def __init__(self, controller):
-            self.controller: Controller = controller
-            super().__init__()
 
         def check_origin(self, origin):
             return True
@@ -27,29 +22,29 @@ class Controller:
         def on_message(self, message):
             message_json = json.load(message)
             if message_json.command == "fwd":
-                self.controller.motor.forward()
+                motor.forward()
             elif message_json.command == "rev":
-                self.controller.motor.reverse()
+                motor.reverse()
             elif message_json.command == "left":
-                self.controller.motor.spin_left()
+                motor.spin_left()
             elif message_json.command == "right":
-                self.controller.motor.spin_left()
+                motor.spin_left()
             elif message_json.command == "fwdleft":
-                self.controller.motor.forward_left()
+                motor.forward_left()
             elif message_json.command == "fwdright":
-                self.controller.motor.forward_right()
+                motor.forward_right()
             elif message_json.command == "revleft":
-                self.controller.motor.reverse_left()
+                motor.reverse_left()
             elif message_json.command == "revright":
-                self.controller.motor.reverse_right()
+                motor.reverse_right()
             elif message_json.command == "stop":
-                self.controller.motor.all_stop()
+                motor.all_stop()
             else:
-                self.controller.motor.all_stop()
+                motor.all_stop()
 
         def on_close(self):
             #TODO send LOW to STDBY GPIO
-            self.controller.motor.all_stop()
+            motor.all_stop()
 
     class EchoWebSocket(websocket.WebSocketHandler):
         def data_received(self, chunk: bytes) -> Optional[Awaitable[None]]:
@@ -84,7 +79,7 @@ class Controller:
     app = web.Application([
         (r'/move', MoveHandler),
         (r'/echo', EchoWebSocket),
-        (r'/(.*)', Fallback)
+        (r'/.*', Fallback)
     ])
 
     def start_server(self, port: int = 8082):
