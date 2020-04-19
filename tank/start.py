@@ -1,10 +1,13 @@
 import json
+import ssl
 from typing import Optional, Awaitable, Union
 
-from tornado import websocket, web, ioloop
+from tornado import websocket, web, ioloop, httpserver
 from tank.motor import MotorController
 
 motor = MotorController()
+ssl_ctx = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
+ssl_ctx.load_cert_chain("./cert.pem", "./key.pem")
 
 
 class Controller:
@@ -17,10 +20,12 @@ class Controller:
             return True
 
         def open(self):
+            #TODO implement logging
             print("Move WebSocket opened")
-            #TODO send HIGH to STDBY GPIO
+            motor.board_init()
 
         def on_message(self, message):
+            #TODO implement logging
             message_json = json.loads(message)
             if message_json["command"] == "fwd":
                 motor.forward()
@@ -44,8 +49,9 @@ class Controller:
                 motor.all_stop()
 
         def on_close(self):
-            #TODO send LOW to STDBY GPIO
+            #TODO implement logging
             motor.all_stop()
+            motor.board_shutdown()
 
     class EchoWebSocket(websocket.WebSocketHandler):
         def data_received(self, chunk: bytes) -> Optional[Awaitable[None]]:
@@ -83,7 +89,9 @@ class Controller:
         (r'/.*', Fallback)
     ])
 
+    server = httpserver.HTTPServer(app, ssl_options=ssl_ctx)
+
     def start_server(self, port: int = 8082):
-        self.app.listen(port)
+        self.server.listen(port)
         print("listening on " + str(port))
         ioloop.IOLoop.instance().start()

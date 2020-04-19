@@ -4,6 +4,8 @@ from gpiozero import DigitalOutputDevice
 
 class MotorController:
 
+    # Motor controller board initialisation GPIO CONSTANTS
+    MOTOR_BOARD_INIT = 0
     # Motor A, Left Side GPIO CONSTANTS
     PWM_DRIVE_LEFT = 21  # ENA - H-Bridge enable pin
     FORWARD_LEFT_PIN = 26  # IN1 - Forward Drive
@@ -19,10 +21,17 @@ class MotorController:
     driveRight = PWMOutputDevice(PWM_DRIVE_RIGHT, True, 0, 1000)
 
     # Initialise objects for H-Bridge digital GPIO pins
+    boardInit = DigitalOutputDevice(MOTOR_BOARD_INIT)
     forwardLeft = DigitalOutputDevice(FORWARD_LEFT_PIN)
     reverseLeft = DigitalOutputDevice(REVERSE_LEFT_PIN)
     forwardRight = DigitalOutputDevice(FORWARD_RIGHT_PIN)
     reverseRight = DigitalOutputDevice(REVERSE_RIGHT_PIN)
+
+    def board_init(self):
+        self.boardInit.value = 1
+
+    def board_shutdown(self):
+        self.boardInit.value = 0
 
     def all_stop(self, speed=1):
         self.forwardLeft.value = False
