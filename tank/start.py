@@ -28,21 +28,21 @@ class Controller:
             #TODO implement logging
             message_json = json.loads(message)
             if message_json["command"] == "fwd":
-                motor.forward()
+                motor.forward(message_json["speed"])
             elif message_json["command"] == "rev":
-                motor.reverse()
+                motor.reverse(message_json["speed"])
             elif message_json["command"] == "left":
-                motor.spin_left()
+                motor.spin_left(message_json["speed"])
             elif message_json["command"] == "right":
-                motor.spin_left()
+                motor.spin_right(message_json["speed"])
             elif message_json["command"] == "fwdleft":
-                motor.forward_left()
+                motor.forward_left(message_json["speed"])
             elif message_json["command"] == "fwdright":
-                motor.forward_right()
+                motor.forward_right(message_json["speed"])
             elif message_json["command"] == "revleft":
-                motor.reverse_left()
+                motor.reverse_left(message_json["speed"])
             elif message_json["command"] == "revright":
-                motor.reverse_right()
+                motor.reverse_right(message_json["speed"])
             elif message_json["command"] == "stop":
                 motor.all_stop()
             else:

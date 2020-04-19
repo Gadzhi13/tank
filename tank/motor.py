@@ -28,20 +28,24 @@ class MotorController:
     reverseRight = DigitalOutputDevice(REVERSE_RIGHT_PIN)
 
     def board_init(self):
+        print("motor.board_init triggered")
         self.boardInit.value = 1
 
     def board_shutdown(self):
+        print("motor.board_shutdown triggered")
         self.boardInit.value = 0
 
-    def all_stop(self, speed=1):
+    def all_stop(self):
+        print("Motor.all_stop triggered")
         self.forwardLeft.value = False
         self.reverseLeft.value = False
         self.forwardRight.value = False
         self.reverseRight.value = False
-        self.driveLeft.value = 0 * speed
-        self.driveRight.value = 0 * speed
+        self.driveLeft.value = 0
+        self.driveRight.value = 0
 
     def forward(self, speed=1):
+        print("Motor.forward triggered with speed = " + str(speed))
         self.forwardLeft.value = True
         self.reverseLeft.value = False
         self.forwardRight.value = True
@@ -50,6 +54,7 @@ class MotorController:
         self.driveRight.value = 1.0 * speed
 
     def reverse(self, speed=1):
+        print("Motor.reverse triggered with speed = " + str(speed))
         self.forwardLeft.value = False
         self.reverseLeft.value = True
         self.forwardRight.value = False
@@ -58,6 +63,7 @@ class MotorController:
         self.driveRight.value = 1.0 * speed
 
     def spin_left(self, speed=1):
+        print("Motor.spin_left triggered with speed = " + str(speed))
         self.forwardLeft.value = False
         self.reverseLeft.value = True
         self.forwardRight.value = True
@@ -65,7 +71,8 @@ class MotorController:
         self.driveLeft.value = 1.0 * speed
         self.driveRight.value = 1.0 * speed
 
-    def Spin_light(self, speed=1):
+    def spin_right(self, speed=1):
+        print("Motor.Spin_right triggered with speed = " + str(speed))
         self.forwardLeft.value = True
         self.reverseLeft.value = False
         self.forwardRight.value = False
@@ -74,6 +81,7 @@ class MotorController:
         self.driveRight.value = 1.0 * speed
 
     def forward_left(self, speed=1):
+        print("Motor.forward_left triggered with speed = " + str(speed))
         self.forwardLeft.value = True
         self.reverseLeft.value = False
         self.forwardRight.value = True
@@ -82,6 +90,7 @@ class MotorController:
         self.driveRight.value = 0.8 * speed
 
     def forward_right(self, speed=1):
+        print("Motor.forward_right triggered with speed = " + str(speed))
         self.forwardLeft.value = True
         self.reverseLeft.value = False
         self.forwardRight.value = True
@@ -90,6 +99,7 @@ class MotorController:
         self.driveRight.value = 0.2 * speed
 
     def reverse_left(self, speed=1):
+        print("Motor.reverse_left triggered with speed = " + str(speed))
         self.forwardLeft.value = False
         self.reverseLeft.value = True
         self.forwardRight.value = False
@@ -98,6 +108,7 @@ class MotorController:
         self.driveRight.value = 0.8 * speed
 
     def reverse_right(self, speed=1):
+        print("Motor.reverse_right triggered with speed = " + str(speed))
         self.forwardLeft.value = False
         self.reverseLeft.value = True
         self.forwardRight.value = False
