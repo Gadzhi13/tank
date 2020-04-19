@@ -6,6 +6,7 @@ from tank.motor import MotorController
 
 motor = MotorController()
 
+
 class Controller:
 
     class MoveHandler(websocket.WebSocketHandler):
@@ -20,24 +21,24 @@ class Controller:
             #TODO send HIGH to STDBY GPIO
 
         def on_message(self, message):
-            message_json = json.load(message)
-            if message_json.command == "fwd":
+            message_json = json.loads(message)
+            if message_json["command"] == "fwd":
                 motor.forward()
-            elif message_json.command == "rev":
+            elif message_json["command"] == "rev":
                 motor.reverse()
-            elif message_json.command == "left":
+            elif message_json["command"] == "left":
                 motor.spin_left()
-            elif message_json.command == "right":
+            elif message_json["command"] == "right":
                 motor.spin_left()
-            elif message_json.command == "fwdleft":
+            elif message_json["command"] == "fwdleft":
                 motor.forward_left()
-            elif message_json.command == "fwdright":
+            elif message_json["command"] == "fwdright":
                 motor.forward_right()
-            elif message_json.command == "revleft":
+            elif message_json["command"] == "revleft":
                 motor.reverse_left()
-            elif message_json.command == "revright":
+            elif message_json["command"] == "revright":
                 motor.reverse_right()
-            elif message_json.command == "stop":
+            elif message_json["command"] == "stop":
                 motor.all_stop()
             else:
                 motor.all_stop()
