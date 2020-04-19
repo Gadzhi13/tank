@@ -5,15 +5,15 @@ from gpiozero import DigitalOutputDevice
 class MotorController:
 
     # Motor controller board initialisation GPIO CONSTANTS
-    MOTOR_BOARD_INIT = 0
+    MOTOR_BOARD_INIT = 12
     # Motor A, Left Side GPIO CONSTANTS
-    PWM_DRIVE_LEFT = 21  # ENA - H-Bridge enable pin
-    FORWARD_LEFT_PIN = 26  # IN1 - Forward Drive
-    REVERSE_LEFT_PIN = 19  # IN2 - Reverse Drive
+    PWM_DRIVE_LEFT = 16  # ENA - H-Bridge enable pin
+    FORWARD_LEFT_PIN = 20  # IN1 - Forward Drive
+    REVERSE_LEFT_PIN = 21  # IN2 - Reverse Drive
     # Motor B, Right Side GPIO CONSTANTS
-    PWM_DRIVE_RIGHT = 5  # ENB - H-Bridge enable pin
-    FORWARD_RIGHT_PIN = 13  # IN1 - Forward Drive
-    REVERSE_RIGHT_PIN = 6  # IN2 - Reverse Drive
+    PWM_DRIVE_RIGHT = 13  # ENB - H-Bridge enable pin
+    FORWARD_RIGHT_PIN = 19  # IN1 - Forward Drive
+    REVERSE_RIGHT_PIN = 26  # IN2 - Reverse Drive
 
     # Initialise objects for H-Bridge GPIO PWM pins
     # Set initial duty cycle to 0 and frequency to 1000
