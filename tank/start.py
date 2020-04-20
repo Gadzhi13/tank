@@ -83,9 +83,15 @@ class Controller:
             print("Error initialising handler")
             self.close(1011, "Error initialising handler")
 
+    class BareboneHandler(web.RequestHandler):
+
+        def get(self):
+            self.render("/home/pi/Desktop/tan_web_gui/barebone/index.html")
+
     app = web.Application([
         (r'/move', MoveHandler),
         (r'/echo', EchoWebSocket),
+        (r'/barebone', BareboneHandler),
         (r'/.*', Fallback)
     ])
 
