@@ -31,9 +31,9 @@ class Controller:
                 motor.forward(message_json["speed"])
             elif message_json["command"] == "rev":
                 motor.reverse(message_json["speed"])
-            elif message_json["command"] == "left":
+            elif message_json["command"] == "spinleft":
                 motor.spin_left(message_json["speed"])
-            elif message_json["command"] == "right":
+            elif message_json["command"] == "spinright":
                 motor.spin_right(message_json["speed"])
             elif message_json["command"] == "fwdleft":
                 motor.forward_left(message_json["speed"])
