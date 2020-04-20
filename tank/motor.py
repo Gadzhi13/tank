@@ -50,8 +50,8 @@ class MotorController:
         self.reverseLeft.value = False
         self.forwardRight.value = True
         self.reverseRight.value = False
-        self.driveLeft.value = 1.0 * speed
-        self.driveRight.value = 1.0 * speed
+        self.driveLeft.value = 1.0 * int(speed)
+        self.driveRight.value = 1.0 * int(speed)
 
     def reverse(self, speed=1):
         print("Motor.reverse triggered with speed = " + str(speed))
@@ -59,8 +59,8 @@ class MotorController:
         self.reverseLeft.value = True
         self.forwardRight.value = False
         self.reverseRight.value = True
-        self.driveLeft.value = 1.0 * speed
-        self.driveRight.value = 1.0 * speed
+        self.driveLeft.value = 1.0 * int(speed)
+        self.driveRight.value = 1.0 * int(speed)
 
     def spin_left(self, speed=1):
         print("Motor.spin_left triggered with speed = " + str(speed))
@@ -68,8 +68,8 @@ class MotorController:
         self.reverseLeft.value = True
         self.forwardRight.value = True
         self.reverseRight.value = False
-        self.driveLeft.value = 1.0 * speed
-        self.driveRight.value = 1.0 * speed
+        self.driveLeft.value = 1.0 * int(speed)
+        self.driveRight.value = 1.0 * int(speed)
 
     def spin_right(self, speed=1):
         print("Motor.Spin_right triggered with speed = " + str(speed))
@@ -77,8 +77,8 @@ class MotorController:
         self.reverseLeft.value = False
         self.forwardRight.value = False
         self.reverseRight.value = True
-        self.driveLeft.value = 1.0 * speed
-        self.driveRight.value = 1.0 * speed
+        self.driveLeft.value = 1.0 * int(speed)
+        self.driveRight.value = 1.0 * int(speed)
 
     def forward_left(self, speed=1):
         print("Motor.forward_left triggered with speed = " + str(speed))
@@ -86,8 +86,8 @@ class MotorController:
         self.reverseLeft.value = False
         self.forwardRight.value = True
         self.reverseRight.value = False
-        self.driveLeft.value = 0.2 * speed
-        self.driveRight.value = 0.8 * speed
+        self.driveLeft.value = 0.2 * int(speed)
+        self.driveRight.value = 0.8 * int(speed)
 
     def forward_right(self, speed=1):
         print("Motor.forward_right triggered with speed = " + str(speed))
@@ -95,8 +95,8 @@ class MotorController:
         self.reverseLeft.value = False
         self.forwardRight.value = True
         self.reverseRight.value = False
-        self.driveLeft.value = 0.8 * speed
-        self.driveRight.value = 0.2 * speed
+        self.driveLeft.value = 0.8 * int(speed)
+        self.driveRight.value = 0.2 * int(speed)
 
     def reverse_left(self, speed=1):
         print("Motor.reverse_left triggered with speed = " + str(speed))
@@ -104,8 +104,8 @@ class MotorController:
         self.reverseLeft.value = True
         self.forwardRight.value = False
         self.reverseRight.value = True
-        self.driveLeft.value = 0.2 * speed
-        self.driveRight.value = 0.8 * speed
+        self.driveLeft.value = 0.2 * int(speed)
+        self.driveRight.value = 0.8 * int(speed)
 
     def reverse_right(self, speed=1):
         print("Motor.reverse_right triggered with speed = " + str(speed))
@@ -113,5 +113,5 @@ class MotorController:
         self.reverseLeft.value = True
         self.forwardRight.value = False
         self.reverseRight.value = True
-        self.driveLeft.value = 0.8 * speed
-        self.driveRight.value = 0.2 * speed
+        self.driveLeft.value = 0.8 * int(speed)
+        self.driveRight.value = 0.2 * int(speed)
