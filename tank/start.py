@@ -86,12 +86,13 @@ class Controller:
     class BareboneHandler(web.RequestHandler):
 
         def get(self):
-            self.render("/home/pi/Desktop/tan_web_gui/barebone/index.html")
+            self.render("/home/pi/Desktop/tank_web_gui/barebone/index.html")
 
     app = web.Application([
         (r'/move', MoveHandler),
         (r'/echo', EchoWebSocket),
         (r'/barebone', BareboneHandler),
+        (r'/', BareboneHandler),
         (r'/.*', Fallback)
     ])
 
