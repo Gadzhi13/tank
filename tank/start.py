@@ -7,7 +7,7 @@ from tank.motor import MotorController
 
 motor = MotorController()
 ssl_ctx = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-ssl_ctx.load_cert_chain("./cert.pem", "./key.pem")
+ssl_ctx.load_cert_chain("/etc/ssl/certs/cert.pem", "/etc/ssl/certs/key.pem")
 
 
 class Controller:
